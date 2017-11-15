@@ -1,0 +1,21 @@
+{
+  "name": "shiro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "args": "^3.0.7",
+    "discord-eco": "0.0.10",
+    "discord-spoiler-bot": "^2.0.5",
+    "discord.js": "^11.2.1",
+    "moment": "^2.19.1",
+    "sqlite": "^2.8.0",
+    "sqlite3": "https://github.com/mapbox/node-sqlite3/tarball/master"
+  }
+}
