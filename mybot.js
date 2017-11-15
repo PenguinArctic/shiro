@@ -12,7 +12,7 @@ const client = new Discord.Client();
 
 const modRole = 'Senpai (Owner)';
 
-
+//------------------------------------------------------------
 client.on('message', message => {
 
       let sender = message.author
@@ -30,7 +30,7 @@ client.on('message', message => {
            if (err) console.error(err)         
      });
 
-    
+ //------------------------------------------------------------
     
      if (msg.startsWith(`${prefix}BUY`)) { 
 
@@ -99,39 +99,37 @@ client.on('message', message => {
             }
 
 
-            let breakChance = 15; 
-            let refundAmount = 50; 
-            let breakMessage = '**Your item was broken during transport!**';
-
-            // These generate the scenario
-            let broken = Math.floor(Math.random() * (100 - 1 + 1) + 1); 
-
-            if (broken <= breakChance) {
-
-                    economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`) * `0.${refundAmount}`).then((i) => { 
-                        message.channel.send(breakMessage);
-
-                    });
-
-                    return; 
-
-            }
-
-
             economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
 
                 message.channel.send('**You bought ' + itemName + '!**');
 
-                if (itemName === 'Helper Role') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "Helper")); 
+                if (itemName === 'Nichijou Pack') {
+                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Nichijou"));
                 }
-
+                if (itemName === 'Maid Dragon Pack') {
+                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Maid Dragon"));
+                }
+                if (itemName === 'LWA Pack') {
+                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫LWA"));
+                }
+                if (itemName === 'JOJO Pack') {
+                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫JOJO"));
+                }
+                if (itemName === 'Noragami Pack') {
+                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Noragami"));
+                }
+                if (itemName === 'Gabriel dropout') {
+                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Gabriel dropout"));
+                }
+                if (itemName === 'Monogatari Pack') {
+                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Monogatari"));
+                }
             })
 
         })
 
     }
-    
+ //------------------------------------------------------------
     if (msg.startsWith(`${prefix}ADDMONEY`)) {
 
  
@@ -163,7 +161,7 @@ client.on('message', message => {
             message.channel.send(`**User defined had ${args[0]} added/subtraction from their account.**`)
         });
 }
-
+//------------------------------------------------------------
 
     if (msg === `${prefix}BALANCE` || msg === `${prefix}MONEY`) { 
 
@@ -188,7 +186,7 @@ client.on('message', message => {
         })
 
     }
-
+//------------------------------------------------------------
 
 if (message.content.toUpperCase() === `${prefix}DAILY`) {
   if (userData[sender.id + message.guild.id].lastDaily != moment().format(`L`)){
