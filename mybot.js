@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const economy = require('discord-eco');
 const fs = require('fs'); 
 const moment = require('moment')
+var config = require("../data/shiroconfig.json")
 
 let items = JSON.parse(fs.readFileSync('Storage/items.json', 'utf8'));
 
@@ -236,6 +237,6 @@ message.channel.send({embed: {
 }});
  }}})               
   
-client.login("Mzc4MzMwMDkwNzY3MTIyNDMy.DOZ-4w.DoI1Azcy-lqB_neHkFugP6clen8")
+client.login(config.token)
 
 //test
