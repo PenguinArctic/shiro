@@ -15,11 +15,9 @@ const modRole = 'Senpai (Owner)';
 //------------------------------------------------------------
 client.on('message', message => {
 
-      let sender = message.author
-
+    let sender = message.author
     let prefix = '>';
     let msg = message.content.toUpperCase();
-
     let cont = message.content.slice(prefix.length).split(" "); 
     let args = cont.slice(1); 
 
@@ -34,9 +32,9 @@ client.on('message', message => {
     
      if (msg.startsWith(`${prefix}BUY`)) { 
 
-        let categories = [];
+         let categories = [];
 
-        if (!args.join(" ")) { 
+         if (!args.join(" ")) {
 
             for (var i in items) {
 
@@ -301,11 +299,13 @@ message.channel.send({embed: {
     fields: [{
         name: "Daily collection",
         value: `**You already collected your daily reward! You can collect your next reward**` + moment().endOf(`**day**`).fromNow() + `.`
-  }]
-           }
-})
-    }}
-       }}
-           )
+ }]
+    }
+       })
+           }}
+
+//------------------------------------------------------------
+      }})
+
   
 client.login(config.token)
