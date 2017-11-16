@@ -125,113 +125,96 @@ client.on('message', message => {
                 })
             })
         }
-        //------------------------------------------------------------
-        if (msg.startsWith(`${prefix}ADDMONEY`)) {
-            if (!message.member.roles.find("name", modRole)) {
-                message.channel.send({embed: {
-                    color: 10181046,
-                    author: {
-                        name: message.author.username,
-                        icon_url: message.author.avatarURL
-                    },
-                    fields: [{
-                        name: "Add Money",
-                        value: '**You need the role `' + modRole + '` to use this command...**'
-                    }]
-                }})
-                return;
-            }
-
-            if (!args[0]) {
-                message.channel.send({embed: {
-                    color: 10181046,
-                    author: {
-                        name: message.author.username,
-                        icon_url: message.author.avatarURL
-                    },
-
-                    fields: [{
-                        name: "Add Money",
-                        value: `**You need to define an amount. Usage: ${prefix}BALSET <amount> <user>**`
-                    }]
-                }})
-                return;
-            }
-
-            if (isNaN(args[0])) {
-                message.channel.send({embed: {
-                    color: 10181046,
-                    author: {
-                        name: message.author.username,
-                        icon_url: message.author.avatarURL
-                    },
-
-                    fields: [{
-                        name: "Add Money",
-                        value: `**The amount has to be a number. Usage: ${prefix}BALSET <amount> <user>**`
-                    }]
-                }});
-                return;
-            }
-
-            let defineduser = '';
-            if (!args[1]) {
-                defineduser = message.author.id;
-            } else {
-                let firstMentioned = message.mentions.users.first();
-                defineduser = firstMentioned.id;
-            }
-
-            economy.updateBalance(defineduser + message.guild.id, parseInt(args[0])).then((i) => {
-                message.channel.send(`**User defined had ${args[0]} added/subtraction from their account.**`)
-            });
+    }
+    //------------------------------------------------------------
+    if (msg.startsWith(`${prefix}ADDMONEY`)) {
+        if (!message.member.roles.find("name", modRole)) {
+            message.channel.send({embed: {
+                color: 10181046,
+                author: {
+                    name: message.author.username,
+                    icon_url: message.author.avatarURL
+                },
+                fields: [{
+                    name: "Add Money",
+                    value: '**You need the role `' + modRole + '` to use this command...**'
+                }]
+            }})
+            return;
         }
-        //------------------------------------------------------------
 
-        if (msg === `${prefix}BALANCE` || msg === `${prefix}MONEY`) {
-            economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
-                message.channel.send({embed: {
-                    color: 10181046,
-                    author: {
-                        name: message.author.username,
-                        icon_url: message.author.avatarURL
-                    },
+        if (!args[0]) {
+            message.channel.send({embed: {
+                color: 10181046,
+                author: {
+                    name: message.author.username,
+                    icon_url: message.author.avatarURL
+                },
 
-                    fields: [{
-                        name: "Money",
-                        value: `**Account Balance:** ${i.money}💴`
-                    }]
-                }})
-
-            })
+                fields: [{
+                    name: "Add Money",
+                    value: `**You need to define an amount. Usage: ${prefix}BALSET <amount> <user>**`
+                }]
+            }})
+            return;
         }
-        //------------------------------------------------------------
 
-        if (message.content.toUpperCase() === `${prefix}DAILY`) {
-            if (userData[sender.id + message.guild.id].lastDaily != moment().format(`L`)){
-                userData[sender.id + message.guild.id].lastDaily = moment().format(`L`)
+        if (isNaN(args[0])) {
+            message.channel.send({embed: {
+                color: 10181046,
+                author: {
+                    name: message.author.username,
+                    icon_url: message.author.avatarURL
+                },
 
-                mainuser = message.author.id;
+                fields: [{
+                    name: "Add Money",
+                    value: `**The amount has to be a number. Usage: ${prefix}BALSET <amount> <user>**`
+                }]
+            }});
+            return;
+        }
 
-                economy.updateBalance(mainuser + message.guild.id, 500).then((i) => {
-                    message.channel.send({embed: {
-                        color: 10181046,
-                        author: {
-                            name: message.author.username,
-                            icon_url: message.author.avatarURL
-                        },
+        let defineduser = '';
+        if (!args[1]) {
+            defineduser = message.author.id;
+        } else {
+            let firstMentioned = message.mentions.users.first();
+            defineduser = firstMentioned.id;
+        }
 
-                        fields: [{
-                            name: "Daily collection",
-                            value: `**You got $500! New Balance:** ${i.money}`
-                        }]
-                    }})
+        economy.updateBalance(defineduser + message.guild.id, parseInt(args[0])).then((i) => {
+            message.channel.send(`**User defined had ${args[0]} added/subtraction from their account.**`)
+        });
+    }
+    //------------------------------------------------------------
 
-                    fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
-                        if (err) console.error(err)
-                    })
-                })
-            }else{
+    if (msg === `${prefix}BALANCE` || msg === `${prefix}MONEY`) {
+        economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
+            message.channel.send({embed: {
+                color: 10181046,
+                author: {
+                    name: message.author.username,
+                    icon_url: message.author.avatarURL
+                },
+
+                fields: [{
+                    name: "Money",
+                    value: `**Account Balance:** ${i.money}💴`
+                }]
+            }})
+
+        })
+    }
+    //------------------------------------------------------------
+
+    if (message.content.toUpperCase() === `${prefix}DAILY`) {
+        if (userData[sender.id + message.guild.id].lastDaily != moment().format(`L`)){
+            userData[sender.id + message.guild.id].lastDaily = moment().format(`L`)
+
+            mainuser = message.author.id;
+
+            economy.updateBalance(mainuser + message.guild.id, 500).then((i) => {
                 message.channel.send({embed: {
                     color: 10181046,
                     author: {
@@ -241,13 +224,31 @@ client.on('message', message => {
 
                     fields: [{
                         name: "Daily collection",
-                        value: `**You already collected your daily reward! You can collect your next reward**` + moment().endOf(`**day**`).fromNow() + `.`
-                    }]}
+                        value: `**You got $500! New Balance:** ${i.money}`
+                    }]
+                }})
+
+                fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
+                    if (err) console.error(err)
                 })
-            }
+            })
+        }else{
+            message.channel.send({embed: {
+                color: 10181046,
+                author: {
+                    name: message.author.username,
+                    icon_url: message.author.avatarURL
+                },
+
+                fields: [{
+                    name: "Daily collection",
+                    value: `**You already collected your daily reward! You can collect your next reward**` + moment().endOf(`**day**`).fromNow() + `.`
+                }]}
+                                 })
         }
     }
 })
+
 //------------------------------------------------------------
 
 client.login(config.token)
