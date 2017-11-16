@@ -1,8 +1,44 @@
 {
    "Nichijou": {  
      "name":"Nichijou Pack",
-     "type":"role",
+     "type":"Packs",
      "price":"50000",   
      "desc":""
-   } 
+   },
+   "Nichijou": {
+     "name":"Maid Dragon Pack",
+     "type":"Packs",
+     "price":"50000",
+     "desc":""
+   },
+   "Nichijou": {
+     "name":"LWA Pack",
+     "type":"Packs",
+     "price":"50000",
+     "desc":""
+   },
+   "Nichijou": {
+     "name":"JOJO Pack",
+     "type":"Packs",
+     "price":"50000",
+     "desc":""
+   },
+   "Nichijou": {
+     "name":"Noragami Pack",
+     "type":"Packs",
+     "price":"50000",
+     "desc":""
+   },
+   "Nichijou": {
+     "name":"Gabriel dropout",
+     "type":"Packs",
+     "price":"50000",
+     "desc":""
+   },
+   "Nichijou": {
+     "name":"Monogatari Pack",
+     "type":"Packs",
+     "price":"50000",
+     "desc":""
+   }
 }
