@@ -283,7 +283,7 @@ if (message.content.toUpperCase() === `${prefix}DAILY`) {
                 
                 
                 
-                fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
+    fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
         if (err) console.error(err)         
 })
             })} else {
