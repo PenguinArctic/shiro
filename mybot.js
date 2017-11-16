@@ -309,7 +309,7 @@ message.channel.send({embed: {
         value: `**You already collected your daily reward! You can collect your next reward**` + moment().endOf(`**day**`).fromNow() + `.`
   }]
 }});
- }}})               
+ }}} })
   
 client.login(config.token)
 
