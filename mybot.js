@@ -102,13 +102,7 @@ client.on('message', message => {
   }]
 }})
 
-
-
-
-
-
-
-        economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
+    economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
             if (i.money <= itemPrice) { 
 
                 return message.channel.send({embed: {
