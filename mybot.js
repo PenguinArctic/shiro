@@ -308,9 +308,10 @@ message.channel.send({embed: {
         name: "Daily collection",
         value: `**You already collected your daily reward! You can collect your next reward**` + moment().endOf(`**day**`).fromNow() + `.`
   }]
-}});
- }}} })
+           }
+})
+    }}
+       }}
+           )
   
 client.login(config.token)
-
-//test
