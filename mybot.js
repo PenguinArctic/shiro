@@ -88,14 +88,44 @@ client.on('message', message => {
         }
 
         if (itemName === '') {
-            return message.channel.send(`**Item ${args.join(" ").trim()} not found.**`)
-        }
+            return message.channel.send({embed: {
+
+    color: 10181046,
+    author: {
+      name: message.author.username,
+      icon_url: message.author.avatarURL
+    },
+
+    fields: [{
+        name: "Shop",
+        value: `**Item ${args.join(" ").trim()} not found.**`
+  }]
+}})
+
+
+
+
+
 
 
         economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
             if (i.money <= itemPrice) { 
 
-                return message.channel.send(`**You don't have enough money for this item.**`);
+                return message.channel.send({embed: {
+
+    color: 10181046,
+    author: {
+      name: message.author.username,
+      icon_url: message.author.avatarURL
+    },
+
+    fields: [{
+        name: "Shop",
+        value: `**You don't have enough money for this item.**`
+  }]
+}});
+
+
             }
 
 
@@ -134,17 +164,63 @@ client.on('message', message => {
 
  
         if (!message.member.roles.find("name", modRole)) { 
-            message.channel.send('**You need the role `' + modRole + '` to use this command...**');
+            message.channel.send({embed: {
+
+    color: 10181046,
+    author: {
+      name: message.author.username,
+      icon_url: message.author.avatarURL
+    },
+
+    fields: [{
+        name: "Add Money",
+        value: '**You need the role `' + modRole + '` to use this command...**'
+  }]
+}})
+
+
             return;
         }
 
         if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}BALSET <amount> <user>**`);
+            message.channel.send({embed: {
+
+    color: 10181046,
+    author: {
+      name: message.author.username,
+      icon_url: message.author.avatarURL
+    },
+
+    fields: [{
+        name: "Add Money",
+        value: `**You need to define an amount. Usage: ${prefix}BALSET <amount> <user>**`
+  }]
+}})
+
+
+
+
+
+
             return;
         }
 
         if (isNaN(args[0])) {
-            message.channel.send(`**The amount has to be a number. Usage: ${prefix}BALSET <amount> <user>**`);
+            message.channel.send({embed: {
+
+    color: 10181046,
+    author: {
+      name: message.author.username,
+      icon_url: message.author.avatarURL
+    },
+
+    fields: [{
+        name: "Add Money",
+        value: `**The amount has to be a number. Usage: ${prefix}BALSET <amount> <user>**`
+  }]
+}}
+
+                    );
             return; 
         }
 
