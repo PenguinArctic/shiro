@@ -13,7 +13,6 @@ const modRole = 'Senpai (Owner)';
 
 //------------------------------------------------------------
 client.on('message', message => {
-
     let sender = message.author
     let prefix = '>';
     let msg = message.content.toUpperCase();
@@ -29,7 +28,14 @@ client.on('message', message => {
 
     //------------------------------------------------------------
 
+    authoruser = message.author.id;
+
+
+    economy.updateBalance(authoruser + message.guild.id, Math.floor(Math.random() * 3))
+
     if (msg.startsWith(`${prefix}BUY`)) {
+
+
         let itemName = '';
         let itemPrice = 0;
         let itemDesc = '';
