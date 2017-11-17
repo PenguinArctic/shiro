@@ -103,15 +103,11 @@ client.on('message', message => {
         // Now, lets check if they have enough money.
         economy.fetchBalance(message.author.id + message.guild.id).then((i) => { // Lets fix a few errors - If you use the unique guild thing, do this.
             if (i.money <= itemPrice) { // It's supposed to be like this instead...
-
                 return message.channel.send(`**You don't have enough money for this item.**`);
             }
-
+            console.log("heyo");
             economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-
-                message.channel.send('**You bought ' + itemName + '!**');
-
-
+                return message.channel.send('**You bought ' + itemName + '!**');
             })
 
         })
