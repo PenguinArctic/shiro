@@ -37,7 +37,7 @@ client.on('message', message => {
         let itemName = '';
         let itemPrice = 0;
         let itemDesc = '';
-        if(!args[0]){
+        if(args[0]){
             for (var i in items) {
                 if (args.join(" ").trim().toUpperCase() === items[i].name.toUpperCase()) {
                     itemName = items[i].name;
