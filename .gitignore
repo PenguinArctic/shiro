@@ -4,4 +4,5 @@
 /node_modules/
 /package-lock.json
 /Storage/userData.json
+/Storage/config.json
 /userData.sqlite
