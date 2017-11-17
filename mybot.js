@@ -80,7 +80,7 @@ client.on('message', message => {
                     value: `**Item ${args.join(" ").trim()} not found.**`
                 }]
             }})
-
+            message.channel.send("heyo");
             economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
                 if (i.money <= itemPrice) {
                     return message.channel.send({embed: {
@@ -96,7 +96,7 @@ client.on('message', message => {
                         }]
                     }});
                 }
-                message.channel.send("heyo");
+
                 economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
                     message.channel.send('**You bought ' + itemName + '!**');
 
