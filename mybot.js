@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const economy = require('discord-eco');
 const fs = require('fs'); 
 const moment = require('moment')
+var config = require("./Storage/config.json");
 
 let items = JSON.parse(fs.readFileSync('Storage/items.json', 'utf8'));
 
@@ -221,4 +222,4 @@ client.on('message', message => {
 
 
 
-client.login(`Mzc4MzMwMDkwNzY3MTIyNDMy.DO-ezg.uX9iQY1c78BouhiTb9tbpXan1ew`)
+client.login(config.token)
