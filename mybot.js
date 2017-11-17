@@ -30,31 +30,6 @@ client.on('message', message => {
     //------------------------------------------------------------
 
     if (msg.startsWith(`${prefix}BUY`)) {
-        let categories = [];
-        if (!args.join(" ")) {
-            for (var i in items) {
-                if (!categories.includes(items[i].type)) {
-                    categories.push(items[i].type)
-                }
-            }
-
-            const embed = new Discord.RichEmbed()
-            .setDescription(`Available Items`)
-            .setColor(0xD4AF37)
-
-            for (var i = 0; i < categories.length; i++) {
-                var tempDesc = '';
-                for (var c in items) {
-                    if (categories[i] === items[c].type) {
-                        tempDesc += `${items[c].name} - $${items[c].price} - ${items[c].desc}\n`;
-                    }
-                }
-                embed.addField(categories[i], tempDesc);
-            }
-            return message.channel.send({embed});
-        }
-
-
         let itemName = '';
         let itemPrice = 0;
         let itemDesc = '';
