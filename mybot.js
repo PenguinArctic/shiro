@@ -29,89 +29,102 @@ client.on('message', message => {
 
     //------------------------------------------------------------
 
-    // Buy Command - You can buy items with this.
-    if (msg.startsWith(`${prefix}BUY`)) { // We need to make a JSON file that contains the items
-
-        // Variables
-        let categories = []; // Lets define categories as an empty array so we can add to it.
-
-        // We want to make it so that if the item is not specified it shows a list of items
-        if (!args.join(" ")) { // Run if no item specified...
-
-            // First, we need to fetch all of the categories.
-            for (var i in items) { // We can do this by creating a for loop.
-
-                // Then, lets push the category to the array if it's not already in it.
+    if (msg.startsWith(`${prefix}BUY`)) {
+        let categories = [];
+        if (!args.join(" ")) {
+            for (var i in items) {
                 if (!categories.includes(items[i].type)) {
                     categories.push(items[i].type)
                 }
-
             }
 
-            // Now that we have the categories we can start the embed
             const embed = new Discord.RichEmbed()
-                .setDescription(`Available Items`)
-                .setColor(0xD4AF37)
+            .setDescription(`Available Items`)
+            .setColor(0xD4AF37)
 
-            for (var i = 0; i < categories.length; i++) { // This runs off of how many categories there are. - MAKE SURE YOU DELETE THAT = IF YOU ADDED IT.
-
+            for (var i = 0; i < categories.length; i++) {
                 var tempDesc = '';
-
-                for (var c in items) { // This runs off of all commands
+                for (var c in items) {
                     if (categories[i] === items[c].type) {
-
-                        tempDesc += `${items[c].name} - $${items[c].price} - ${items[c].desc}\n`; // Remember that \n means newline
-
+                        tempDesc += `${items[c].name} - $${items[c].price} - ${items[c].desc}\n`;
                     }
-
                 }
-
-                // Then after it adds all the items from that category, add it to the embed
                 embed.addField(categories[i], tempDesc);
-
             }
-
-            // Now we need to send the message, make sure it is out of the for loop.
-            return message.channel.send({
-                embed
-            }); // Lets also return here.
-
-            // Lets test it! x2
-
+            return message.channel.send({embed});
         }
 
-        // Buying the item.
 
-        // Item Info
         let itemName = '';
         let itemPrice = 0;
         let itemDesc = '';
 
-        for (var i in items) { // Make sure you have the correct syntax for this.
-            if (args.join(" ").trim().toUpperCase() === items[i].name.toUpperCase()) { // If item is found, run this...
+        for (var i in items) {
+            if (args.join(" ").trim().toUpperCase() === items[i].name.toUpperCase()) {
                 itemName = items[i].name;
                 itemPrice = items[i].price;
                 itemDesc = items[i].desc;
             }
         }
 
-        // If the item wasn't found, itemName won't be defined
         if (itemName === '') {
-            return message.channel.send(`**Item ${args.join(" ").trim()} not found.**`)
-        }
+            return message.channel.send({embed: {
+                color: 10181046,
+                author: {
+                    name: message.author.username,
+                    icon_url: message.author.avatarURL
+                },
 
-        // Now, lets check if they have enough money.
-        economy.fetchBalance(message.author.id + message.guild.id).then((i) => { // Lets fix a few errors - If you use the unique guild thing, do this.
-            if (i.money <= itemPrice) { // It's supposed to be like this instead...
-                return message.channel.send(`**You don't have enough money for this item.**`);
-            }
-            console.log("heyo");
-            economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-                return message.channel.send('**You bought ' + itemName + '!**');
+                fields: [{
+                    name: "Shop",
+                    value: `**Item ${args.join(" ").trim()} not found.**`
+                }]
+            }})
+
+            economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
+                if (i.money <= itemPrice) {
+                    return message.channel.send({embed: {
+                        color: 10181046,
+                        author: {
+                            name: message.author.username,
+                            icon_url: message.author.avatarURL
+                        },
+
+                        fields: [{
+                            name: "Shop",
+                            value: `**You don't have enough money for this item.**`
+                        }]
+                    }});
+                }
+
+                economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
+                    message.channel.send('**You bought ' + itemName + '!**');
+
+                    if (itemName === 'Nichijou Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Nichijou"));
+                    }
+                    if (itemName === 'Maid Dragon Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Maid Dragon"));
+                    }
+                    if (itemName === 'LWA Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫LWA"));
+                    }
+                    if (itemName === 'JOJO Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫JOJO"));
+                    }
+                    if (itemName === 'Noragami Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Noragami"));
+                    }
+                    if (itemName === 'Gabriel dropout') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Gabriel dropout"));
+                    }
+                    if (itemName === 'Monogatari Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Monogatari"));
+                    }
+                })
+>>>>>>> origin/master
             })
-
-        })
-
+        }
     }
     //------------------------------------------------------------
     if (msg.startsWith(`${prefix}ADDMONEY`)) {
@@ -237,5 +250,9 @@ client.on('message', message => {
 })
 
 //------------------------------------------------------------
+
+
+
+
 
 client.login(`Mzc4MzMwMDkwNzY3MTIyNDMy.DO-ezg.uX9iQY1c78BouhiTb9tbpXan1ew`)
