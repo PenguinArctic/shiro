@@ -14,6 +14,10 @@ const modRole = 'Senpai (Owner)';
 //------------------------------------------------------------
 client.on('message', message => {
 
+    function getRandom() {
+  return Math.random();
+}
+
     let sender = message.author
     let prefix = '>';
     let msg = message.content.toUpperCase();
@@ -29,7 +33,17 @@ client.on('message', message => {
 
     //------------------------------------------------------------
 
-    if (msg.startsWith(`${prefix}BUY`)) {
+    authoruser = message.author.id;
+
+
+         economy.updateBalance(authoruser + message.guild.id, Math.floor(Math.random() * 3))
+
+
+
+
+
+
+        if (msg.startsWith(`${prefix}BUY`)) {
         let categories = [];
         if (!args.join(" ")) {
             for (var i in items) {
