@@ -34,8 +34,6 @@ client.on('message', message => {
     economy.updateBalance(authoruser + message.guild.id, Math.floor(Math.random() * 3))
 
     if (msg.startsWith(`${prefix}BUY`)) {
-
-
         let itemName = '';
         let itemPrice = 0;
         let itemDesc = '';
@@ -46,25 +44,9 @@ client.on('message', message => {
                 itemPrice = items[i].price;
                 itemDesc = items[i].desc;
             }
-        }
 
-        if (itemName === '') {
-            return message.channel.send({embed: {
-                color: 10181046,
-                author: {
-                    name: message.author.username,
-                    icon_url: message.author.avatarURL
-                },
 
-                fields: [{
-                    name: "Shop",
-                    value: `**Item ${args.join(" ").trim()} not found.**`
-                }]
-            }})
-        }
-
-        economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
-            if (i.money <= itemPrice) {
+            if (itemName === '') {
                 return message.channel.send({embed: {
                     color: 10181046,
                     author: {
@@ -74,37 +56,54 @@ client.on('message', message => {
 
                     fields: [{
                         name: "Shop",
-                        value: `**You don't have enough money for this item.**`
+                        value: `**Item ${args.join(" ").trim()} not found.**`
                     }]
-                }});
+                }})
             }
 
-            economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-                message.channel.send('**You bought ' + itemName + '!**');
+            economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
+                if (i.money <= itemPrice) {
+                    return message.channel.send({embed: {
+                        color: 10181046,
+                        author: {
+                            name: message.author.username,
+                            icon_url: message.author.avatarURL
+                        },
 
-                if (itemName === 'Nichijou Pack') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Nichijou"));
+                        fields: [{
+                            name: "Shop",
+                            value: `**You don't have enough money for this item.**`
+                        }]
+                    }});
                 }
-                if (itemName === 'Maid Dragon Pack') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Maid Dragon"));
-                }
-                if (itemName === 'LWA Pack') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫LWA"));
-                }
-                if (itemName === 'JOJO Pack') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫JOJO"));
-                }
-                if (itemName === 'Noragami Pack') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Noragami"));
-                }
-                if (itemName === 'Gabriel dropout') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Gabriel dropout"));
-                }
-                if (itemName === 'Monogatari Pack') {
-                    message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Monogatari"));
-                }
+
+                economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
+                    message.channel.send('**You bought ' + itemName + '!**');
+
+                    if (itemName === 'Nichijou Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Nichijou"));
+                    }
+                    if (itemName === 'Maid Dragon Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Maid Dragon"));
+                    }
+                    if (itemName === 'LWA Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫LWA"));
+                    }
+                    if (itemName === 'JOJO Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫JOJO"));
+                    }
+                    if (itemName === 'Noragami Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Noragami"));
+                    }
+                    if (itemName === 'Gabriel dropout') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Gabriel dropout"));
+                    }
+                    if (itemName === 'Monogatari Pack') {
+                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Monogatari"));
+                    }
+                })
             })
-        })
+        }
     }
 
     //------------------------------------------------------------
