@@ -122,7 +122,6 @@ client.on('message', message => {
                         message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Monogatari"));
                     }
                 })
->>>>>>> origin/master
             })
         }
     }
