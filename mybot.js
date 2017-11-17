@@ -37,12 +37,15 @@ client.on('message', message => {
         let itemName = '';
         let itemPrice = 0;
         let itemDesc = '';
+        let item;
         if(args[0]){
             for (var i in items) {
                 if (args.join(" ").trim().toUpperCase() === items[i].name.toUpperCase()) {
                     itemName = items[i].name;
                     itemPrice = items[i].price;
                     itemDesc = items[i].desc;
+                    itemType = items[i].type;
+                    item = items[i]
                 }
             }
 
@@ -80,26 +83,10 @@ client.on('message', message => {
                 economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
                     message.channel.send('**You bought ' + itemName + '!**');
 
-                    if (itemName === 'Nichijou Pack') {
-                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Nichijou"));
-                    }
-                    if (itemName === 'Maid Dragon Pack') {
-                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Maid Dragon"));
-                    }
-                    if (itemName === 'LWA Pack') {
-                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫LWA"));
-                    }
-                    if (itemName === 'JOJO Pack') {
-                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫JOJO"));
-                    }
-                    if (itemName === 'Noragami Pack') {
-                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Noragami"));
-                    }
-                    if (itemName === 'Gabriel dropout') {
-                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Gabriel dropout"));
-                    }
-                    if (itemName === 'Monogatari Pack') {
-                        message.guild.members.get(message.author.id).addRole(message.guild.roles.find("name", "🎫Monogatari"));
+                    switch(itemType){
+                        case "Packs":
+                            message.member.addRole(message.guild.roles.find("name", item.role));
+                            break;
                     }
                 })
             })
