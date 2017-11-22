@@ -110,6 +110,7 @@ client.on('message', message => {
 
 					switch(itemType){
 						case "Packs":
+						case "Utilities":
 							message.member.addRole(message.guild.roles.find("name", item.role));
 							break;
 					}
