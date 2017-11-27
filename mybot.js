@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
-const economy = require('discord-eco');
+const economy = require('discord-eco-chito');
+economy.start("./userData.sqlite");
+
 const fs = require('fs'); 
 const moment = require('moment')
 var config = require("./Storage/config.json");
