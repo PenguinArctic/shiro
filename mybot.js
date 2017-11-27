@@ -112,6 +112,7 @@ client.on('message', message => {
 						case "Packs":
 						case "Utilities":
 							message.member.addRole(message.guild.roles.find("name", item.role));
+							message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
 							break;
 					}
 				})
