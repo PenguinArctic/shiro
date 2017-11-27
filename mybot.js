@@ -8,8 +8,6 @@ var config = require("./Storage/config.json");
 
 let items = JSON.parse(fs.readFileSync('Storage/items.json', 'utf8'));
 
-let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'))
-
 const client = new Discord.Client();
 
 const modRole = 'Senpai (Owner)';
@@ -22,12 +20,6 @@ client.on('message', message => {
 	let cont = message.content.slice(prefix.length).split(" ");
 	let args = cont.slice(1);
 
-
-	if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-	if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
-	fs.writeFile("Storage/userData.json", JSON.stringify(userData), "utf-8",(err) => {
-		if (err) console.error(err)
-	});
 
 	//------------------------------------------------------------
 
@@ -204,12 +196,26 @@ client.on('message', message => {
 	//------------------------------------------------------------
 
 	if (message.content.toUpperCase() === `${prefix}DAILY`) {
-		if (userData[sender.id + message.guild.id].lastDaily != moment().format(`L`)){
-			userData[sender.id + message.guild.id].lastDaily = moment().format(`L`)
+		economy.fetchBalance(message.author.id + message.guild.id).then((i) => {
+			console.log(i.lastDaily);
+			if(i.lastDaily == "Not Collected" || moment.duration(moment().diff(moment(i.lastDaily,"YYYY-MM-DD kk:mm"))).asHours() >= 24){
+				economy.updateLastDaily(message.author.id + message.guild.id,moment().format("YYYY-MM-DD kk:mm"))
 
-			mainuser = message.author.id;
+				economy.updateBalance(message.author.id + message.guild.id, 500).then((i) => {
+					message.channel.send({embed: {
+						color: 10181046,
+						author: {
+							name: message.author.username,
+							icon_url: message.author.avatarURL
+						},
 
-			economy.updateBalance(mainuser + message.guild.id, 500).then((i) => {
+						fields: [{
+							name: "Daily collection",
+							value: `**You got $500! New Balance:** ${i.money}`
+						}]
+					}})
+				})
+			}else{
 				message.channel.send({embed: {
 					color: 10181046,
 					author: {
@@ -219,28 +225,12 @@ client.on('message', message => {
 
 					fields: [{
 						name: "Daily collection",
-						value: `**You got $500! New Balance:** ${i.money}`
-					}]
-				}})
-
-				fs.writeFile("Storage/userData.json", JSON.stringify(userData), "utf-8",(err) => {
-					if (err) console.error(err)
+						value: `**You already collected your daily reward! You can collect your next reward** in ${24 - Math.floor(moment.duration(moment().diff(moment(i.lastDaily,"YYYY-MM-DD kk:mm"))).asHours())} hours.`
+					}]}
 				})
-			})
-		}else{
-			message.channel.send({embed: {
-				color: 10181046,
-				author: {
-					name: message.author.username,
-					icon_url: message.author.avatarURL
-				},
+			}
+		})
 
-				fields: [{
-					name: "Daily collection",
-					value: `**You already collected your daily reward! You can collect your next reward** ${moment().endOf(`day`).fromNow()} .`
-				}]}
-								 })
-		}
 	}
 })
 

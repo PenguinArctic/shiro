@@ -14,7 +14,6 @@
     "discord-eco-chito": "^1.0.0",
     "discord.js": "^11.2.1",
     "moment": "^2.19.1",
-    "sqlite": "^2.8.0",
-    "sqlite3": "https://github.com/mapbox/node-sqlite3/tarball/master"
+    "sqlite3": "^3.1.13"
   }
 }
