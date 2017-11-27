@@ -4,6 +4,7 @@
         "type": "Packs",
         "price": "50000",
         "role":  "🎫Nichijou",
+		"channel":"nichijou",
         "desc": ""
     },
     "LWA Pack": {
@@ -39,7 +40,7 @@
 	"Nickname Change":{
 		"name":"Nickname Change",
 		"type":"Utilities",
-		"price":"5000",
+		"price":"1000",
 		"desc":"Allows you to change your nickname",
 		"role":"⭕ Nickname Change"
 	}
