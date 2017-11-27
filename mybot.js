@@ -25,7 +25,7 @@ client.on('message', message => {
 
 	if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
 	if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
-	fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
+	fs.writeFile("Storage/userData.json", JSON.stringify(userData), "utf-8",(err) => {
 		if (err) console.error(err)
 	});
 
@@ -223,7 +223,7 @@ client.on('message', message => {
 					}]
 				}})
 
-				fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
+				fs.writeFile("Storage/userData.json", JSON.stringify(userData), "utf-8",(err) => {
 					if (err) console.error(err)
 				})
 			})
@@ -237,7 +237,7 @@ client.on('message', message => {
 
 				fields: [{
 					name: "Daily collection",
-					value: `**You already collected your daily reward! You can collect your next reward**` + moment().endOf(`**day**`).fromNow() + `.`
+					value: `**You already collected your daily reward! You can collect your next reward** ${moment().endOf(`day`).fromNow()} .`
 				}]}
 								 })
 		}
