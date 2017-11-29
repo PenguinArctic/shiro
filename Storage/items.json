@@ -53,11 +53,9 @@
 		"channel":"change-nickname"
 	},
 	"Background":{
-		"name":"Nickname Change",
+		"name":"Background",
 		"type":"Utilities",
-		"price":"1000",
-		"desc":"Allows you to change your nickname",
-		"role":"⭕ Nickname Change",
-		"channel":"change-nickname"
+		"price":"10000",
+		"desc":"Enter https://www.fandomcircle.com/shop-1#PROFILES for info on how to use it"
 	}
 }
