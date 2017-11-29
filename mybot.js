@@ -71,6 +71,14 @@ client.on('message', message => {
 				}
 			}
 
+			if(args[0]=="Background"){
+				itemName = items["Background"].name;
+				itemPrice = items["Background"].price;
+				itemDesc = items["Background"].desc;
+				itemType = items["Background"].type;
+				item = items["Background"]
+			}
+
 			if (itemName === '') {
 				return message.channel.send({embed: {
 					color: 10181046,
@@ -122,11 +130,24 @@ client.on('message', message => {
 								break;
 
 							case "Background":
-								if(inventory[authoruser]){
-
-								}else{
-
-								}
+								message.channel.send("Write the number of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
+									const collector = message.channel.createMessageCollector(
+										m => m.author.id == message.author.id,
+										{ max: 1 }
+									);
+									collector.on('collect', m => {
+										var number = parseInt(m.content.split(" ")[0]);
+										if(inventory[m.author.id][`bg${number}`]){
+											m.reply("You already have this background. Set it using >background <number>")
+										}else{
+											economy.updateBalance(m.author.id + m.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
+												inventory[m.author.id][`bg${number}`] = true;
+												m.reply("Thanks for buying this background ^.^. Set it using >background <number>");
+												util.save(inventory,"inventory");
+											})
+										}
+									})
+								})
 								break;
 						}
 						break;
