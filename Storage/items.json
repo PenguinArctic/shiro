@@ -7,35 +7,43 @@
 		"channel":"nichijou",
         "desc": ""
     },
+	"Dragon Maid Pack": {
+        "name": "Nichijou Pack",
+        "type": "Packs",
+        "price": "50000",
+        "role":  "🎫Maid Dragon",
+		"channel":"dragon-maid",
+        "desc": ""
+    },
     "LWA Pack": {
         "name": "LWA Pack",
         "type": "Packs",
         "price": "50000",
-        "desc": ""
+        "desc": "Coming Soon!"
     },
     "JOJO Pack": {
         "name": "JOJO Pack",
         "type": "Packs",
         "price": "50000",
-        "desc": "sdsd"
+        "desc": "Coming Soon!"
     },
     "Noragami Pack": {
         "name": "Noragami Pack",
         "type": "Packs",
         "price": "50000",
-        "desc": "sdsd"
+        "desc": "Coming Soon!"
     },
     "Gabriel dropout": {
         "name": "Gabriel dropout",
         "type": "Packs",
         "price": "50000",
-        "desc": "sdsd"
+        "desc": "Coming Soon!"
     },
     "Monogatari Pack": {
         "name": "Monogatari Pack",
         "type": "Packs",
         "price": "50000",
-        "desc": "sdsd"
+        "desc": "Coming Soon!"
     },
 	"Nickname Change":{
 		"name":"Nickname Change",
