@@ -50,6 +50,13 @@
 		"type":"Utilities",
 		"price":"1000",
 		"desc":"Allows you to change your nickname",
+		"channel":"change-nickname"
+	},
+	"Background":{
+		"name":"Nickname Change",
+		"type":"Utilities",
+		"price":"1000",
+		"desc":"Allows you to change your nickname",
 		"role":"⭕ Nickname Change",
 		"channel":"change-nickname"
 	}

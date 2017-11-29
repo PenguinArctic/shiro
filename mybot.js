@@ -8,6 +8,7 @@ var util = require("../akira/utilities.js")
 var config = require("./Storage/config.json");
 
 let items = JSON.parse(fs.readFileSync('Storage/items.json', 'utf8'));
+var inventory = JSON.parse(fs.readFileSync('../data/inventory.json', 'utf8'));
 
 const client = new Discord.Client();
 
@@ -21,13 +22,14 @@ client.on('message', message => {
 	let cont = message.content.slice(prefix.length).split(" ");
 	let args = cont.slice(1);
 
-
 	//------------------------------------------------------------
 
 	authoruser = message.author.id;
-
-
-	economy.updateBalance(authoruser + message.guild.id, Math.floor(Math.random() * 3))
+	economy.updateBalance(authoruser + message.guild.id, Math.floor(Math.random() * 3));
+	if(inventory[authoruser] == undefined) {
+		inventory[authoruser]={};
+		util.save(inventory,"inventory");
+	}
 
 	if (msg.startsWith(`${prefix}BUY`) || msg.startsWith(`${prefix}SHOP`)) {
 		let categories = [];
@@ -100,17 +102,35 @@ client.on('message', message => {
 					}});
 				}
 
-				economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-					message.channel.send('**You bought ' + itemName + '!**');
-
-					switch(itemType){
-						case "Packs":
-						case "Utilities":
+				switch(itemType){
+					case "Packs":
+						economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
 							message.member.addRole(message.guild.roles.find("name", item.role));
+							message.channel.send('**You bought ' + itemName + '!**');
 							message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
-							break;
-					}
-				})
+						})
+						break;
+
+					case "Utilities":
+						switch(itemName){
+							case "Nickname Change":
+								economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
+									message.member.addRole(message.guild.roles.find("name", item.role));
+									message.channel.send('**You bought ' + itemName + '!**');
+									message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
+								})
+								break;
+
+							case "Background":
+								if(inventory[authoruser]){
+
+								}else{
+
+								}
+								break;
+						}
+						break;
+				}
 			})
 		}
 	}
@@ -228,12 +248,12 @@ client.on('message', message => {
 						name: "Daily collection",
 						value: `**You already collected your daily reward! You can collect your next reward** in ${24 - Math.floor(moment.duration(moment().diff(moment(i.lastDaily,"YYYY-MM-DD kk:mm"))).asHours())} hours.`
 					}]}
-				})
+									 })
 			}
 		})
 
 	}
-//--------------------------------------------------------------------
+	//--------------------------------------------------------------------
 	if (message.channel.name == "shiro") {
 		util.talk(client,message);
 	}
