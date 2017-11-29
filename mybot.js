@@ -40,7 +40,7 @@ client.on('message', message => {
 				}
 			}
 
-			const embed = new Discord.RichEmbed()
+			const embed = new Discord.MessageEmbed()
 			.setDescription(`Available Items`)
 			.setColor(0xD4AF37)
 
