@@ -12,7 +12,7 @@
   "dependencies": {
     "args": "^3.0.7",
     "discord-eco-chito": "^1.0.0",
-    "discord.js": "^11.2.1",
+    "discord.js": "github:hydrabolt/discord.js",
     "moment": "^2.19.1",
     "sqlite3": "^3.1.13"
   }

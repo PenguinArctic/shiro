@@ -3,7 +3,8 @@ const economy = require('discord-eco-chito');
 economy.start("./userData.sqlite");
 
 const fs = require('fs'); 
-const moment = require('moment')
+const moment = require('moment');
+var util = require("../akira/utilities.js")
 var config = require("./Storage/config.json");
 
 let items = JSON.parse(fs.readFileSync('Storage/items.json', 'utf8'));
@@ -231,6 +232,10 @@ client.on('message', message => {
 			}
 		})
 
+	}
+//--------------------------------------------------------------------
+	if (message.channel.name == "shiro") {
+		util.talk(client,message);
 	}
 })
 
