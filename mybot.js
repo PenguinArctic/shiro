@@ -121,7 +121,7 @@ client.on('message', message => {
 					case "Utilities":
 						switch(itemName){
 							case "Nickname Change":
-								try{economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`));}catch(e){}
+								try{economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`));}catch(e){console.log(e)}
 								message.member.addRole(message.guild.roles.find("name", item.role));
 								message.channel.send('**You bought ' + itemName + '!**');
 								message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
