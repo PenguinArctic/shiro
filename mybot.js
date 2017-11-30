@@ -112,21 +112,19 @@ client.on('message', message => {
 
 				switch(itemType){
 					case "Packs":
-						economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-							message.member.addRole(message.guild.roles.find("name", item.role));
-							message.channel.send('**You bought ' + itemName + '!**');
-							message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
-						})
+						economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`))
+						message.member.addRole(message.guild.roles.find("name", item.role));
+						message.channel.send('**You bought ' + itemName + '!**');
+						message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
 						break;
 
 					case "Utilities":
 						switch(itemName){
 							case "Nickname Change":
-								economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-									message.member.addRole(message.guild.roles.find("name", item.role));
-									message.channel.send('**You bought ' + itemName + '!**');
-									message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
-								})
+								economy.updateBalance(message.author.id + message.guild.id, parseInt(`-${itemPrice}`));
+								message.member.addRole(message.guild.roles.find("name", item.role));
+								message.channel.send('**You bought ' + itemName + '!**');
+								message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
 								break;
 
 							case "Background":
@@ -140,11 +138,10 @@ client.on('message', message => {
 										if(inventory[m.author.id][`bg${number}`]){
 											m.reply("You already have this background. Set it using >background <number>")
 										}else{
-											economy.updateBalance(m.author.id + m.guild.id, parseInt(`-${itemPrice}`)).then((i) => {
-												inventory[m.author.id][`bg${number}`] = true;
-												m.reply("Thanks for buying this background ^.^. Set it using >background <number>");
-												util.save(inventory,"inventory");
-											})
+											economy.updateBalance(m.author.id + m.guild.id, parseInt(`-${itemPrice}`));
+											inventory[m.author.id][`bg${number}`] = true;
+											m.reply("Thanks for buying this background ^.^. Set it using >background <number>");
+											util.save(inventory,"inventory");
 										}
 									})
 								})
