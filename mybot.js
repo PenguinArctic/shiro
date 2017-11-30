@@ -5,8 +5,7 @@ const moment = require('moment');
 var util = require("../akira/utilities.js")
 var config = require("./Storage/config.json");
 
-var profile = require("../data/exp.json");
-let items = JSON.parse(fs.readFileSync('Storage/items.json', 'utf8'));
+let items = require('Storage/items.json');
 var inventory = JSON.parse(fs.readFileSync('../data/inventory.json', 'utf8'));
 
 const client = new Discord.Client();
@@ -22,7 +21,7 @@ client.on('message', message => {
 	let args = cont.slice(1);
 
 	//------------------------------------------------------------
-
+	var profile = JSON.parse(fs.readFileSync('../data/exp.json', 'utf8'));
 	authoruser = message.author.id;
 	profile[authoruser].money += Math.floor(Math.random() * 3);
 	util.save(profile,"exp");
