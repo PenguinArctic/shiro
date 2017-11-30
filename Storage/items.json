@@ -46,14 +46,14 @@
         "desc": "Coming Soon!"
     },
 	"Nickname Change":{
-		"name":"Nickname Change",
+		"name":"Nickname Change (Unstable, doesnt work)",
 		"type":"Utilities",
 		"price":"1000",
 		"desc":"Allows you to change your nickname",
 		"channel":"change-nickname"
 	},
 	"Background":{
-		"name":"Background",
+		"name":"Background (Unstable, doesnt work)",
 		"type":"Utilities",
 		"price":"10000",
 		"desc":"http://bit.ly/2i3A2Lw for info on how to use it"
