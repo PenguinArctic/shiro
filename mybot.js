@@ -122,19 +122,19 @@ client.on('message', message => {
 							break;
 
 						case "Background":
-							message.channel.send("Write the number of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
+							message.channel.send("Write the code of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
 								const collector = message.channel.createMessageCollector(
 									m => m.author.id == message.author.id,
 									{ max: 1 }
 								);
 								collector.on('collect', m => {
-									var number = parseInt(m.content.split(" ")[0]);
+									var number = m.content.split(" ")[0];
 									if(inventory[m.author.id][`bg${number}`]){
-										m.reply("You already have this background. Set it using >background <number>")
+										m.reply("You already have this background. Set it using >background <code>")
 									}else{
 										profile[m.author.id].money += -itemPrice;
 										inventory[m.author.id][`bg${number}`] = true;
-										m.reply("Thanks for buying this background ^.^. Set it using >background <number>");
+										m.reply("Thanks for buying this background ^.^. Set it using >background <code>");
 										util.save(inventory,"inventory");
 										util.save(profile,"exp");
 									}
