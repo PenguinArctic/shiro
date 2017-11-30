@@ -108,16 +108,16 @@ client.on('message', message => {
 					profile[message.author.id].money += -itemPrice;
 					message.member.addRole(message.guild.roles.find("name", item.role));
 					message.channel.send('**You bought ' + itemName + '!**');
-					message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
+					message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
 					break;
 
 				case "Utilities":
 					switch(itemName){
 						case "Nickname Change":
 							profile[message.author.id].money += -itemPrice;
-							message.member.addRole(message.guild.roles.find("name", item.role));
+							message.member.addRole(message.guild.roles.find("name", item.role),"Purchase from the shop");
 							message.channel.send('**You bought ' + itemName + '!**');
-							message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete("New channel ping"))
+							message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
 							util.save(profile,"exp");
 							break;
 
