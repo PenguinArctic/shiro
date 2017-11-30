@@ -12,7 +12,7 @@ var inventory = JSON.parse(fs.readFileSync('../data/inventory.json', 'utf8'));
 
 const client = new Discord.Client();
 
-const modRole = 'Senpai (Owner)';
+const modRole = '🌯 Administrator';
 
 //------------------------------------------------------------
 client.on('message', message => {
