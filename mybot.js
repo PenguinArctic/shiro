@@ -4,9 +4,10 @@ const fs = require('fs');
 const moment = require('moment');
 var util = require("../akira/utilities.js")
 var config = require("./Storage/config.json");
+var json = require("jsonfile")
 
 let items = require('./Storage/items.json');
-var inventory = JSON.parse(fs.readFileSync('../data/inventory.json', 'utf-8'));
+var inventory = json.readFileSync('../data/inventory.json');
 
 const client = new Discord.Client();
 
@@ -21,7 +22,7 @@ client.on('message', message => {
 	let args = cont.slice(1);
 
 	//------------------------------------------------------------
-	var profile = JSON.parse(fs.readFileSync('../data/exp.json', 'utf-8'));
+	var profile = json.readFileSync('../data/exp.json');
 	authoruser = message.author.id;
 	profile[authoruser].money += Math.floor(Math.random() * 3);
 	util.save(profile,"exp");
@@ -127,7 +128,7 @@ client.on('message', message => {
 									{ max: 1 }
 								);
 								collector.on('collect', m => {
-									var unavailable = JSON.parse(fs.readFileSync('../data/unavailable.json', 'utf-8'));
+									var unavailable = json.readFileSync('../data/unavailable.json');
 									var number = m.content.split(" ")[0].toUpperCase();
 
 									if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
