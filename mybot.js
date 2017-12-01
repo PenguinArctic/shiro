@@ -5,7 +5,7 @@ const moment = require('moment');
 var util = require("../akira/utilities.js")
 var config = require("./Storage/config.json");
 
-let items = require('Storage/items.json');
+let items = require('./Storage/items.json');
 var inventory = JSON.parse(fs.readFileSync('../data/inventory.json', 'utf8'));
 
 const client = new Discord.Client();
