@@ -6,7 +6,7 @@ var util = require("../akira/utilities.js")
 var config = require("./Storage/config.json");
 
 let items = require('./Storage/items.json');
-var inventory = JSON.parse(fs.readFileSync('../data/inventory.json', 'utf8'));
+var inventory = JSON.parse(fs.readFileSync('../data/inventory.json', 'utf-8'));
 
 const client = new Discord.Client();
 
@@ -21,7 +21,7 @@ client.on('message', message => {
 	let args = cont.slice(1);
 
 	//------------------------------------------------------------
-	var profile = JSON.parse(fs.readFileSync('../data/exp.json', 'utf8'));
+	var profile = JSON.parse(fs.readFileSync('../data/exp.json', 'utf-8'));
 	authoruser = message.author.id;
 	profile[authoruser].money += Math.floor(Math.random() * 3);
 	util.save(profile,"exp");
@@ -121,14 +121,13 @@ client.on('message', message => {
 							break;
 
 						case "Background":
-
 							message.channel.send("Write the code of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
 								const collector = message.channel.createMessageCollector(
 									m => m.author.id == message.author.id,
 									{ max: 1 }
 								);
 								collector.on('collect', m => {
-									var unavailable = JSON.parse(fs.readFileSync('../data/unavailable.json', 'utf8'));
+									var unavailable = JSON.parse(fs.readFileSync('../data/unavailable.json', 'utf-8'));
 									var number = m.content.split(" ")[0].toUpperCase();
 
 									if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
