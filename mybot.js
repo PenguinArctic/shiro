@@ -13,6 +13,15 @@ const client = new Discord.Client();
 
 const modRole = '🌯 Administrator';
 
+client.on('ready', () => {
+	util.log(client,'I am ready!');
+	client.on('debug',info=>{
+		if(!info.startsWith("[ws]")){
+			util.log(client,info);
+		}
+	})
+});
+
 //------------------------------------------------------------
 client.on('message', message => {
 	let sender = message.author
