@@ -33,7 +33,7 @@ client.on('message', message => {
 	//------------------------------------------------------------
 	var profile = json.readFileSync('../data/exp.json');
 
-	profile[message.author.id].money += Math.floor(Math.random() * 3);
+	//profile[message.author.id].money += Math.floor(Math.random() * 3);
 	util.save(profile,"exp");
 
 	if(inventory[message.author.id] == undefined) {
