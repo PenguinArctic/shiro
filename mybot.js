@@ -33,7 +33,9 @@ client.on('message', message => {
 	var profile = json.readFileSync('../data/exp.json');
 
 	//profile[message.author.id].money += Math.floor(Math.random() * 3);
-	util.save(profile,"exp");
+	try{
+		util.save(profile,"exp");
+	}catch(e){console.log("error")}
 	console.log(cont[0].toLowerCase());
 	if(inventory[message.author.id] == undefined) {
 		inventory[message.author.id]={};
