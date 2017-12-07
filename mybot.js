@@ -34,7 +34,7 @@ client.on('message', message => {
 
 	//profile[message.author.id].money += Math.floor(Math.random() * 3);
 	util.save(profile,"exp");
-
+	console.log(cont[0].toLowerCase());
 	if(inventory[message.author.id] == undefined) {
 		inventory[message.author.id]={};
 		util.save(inventory,"inventory");
