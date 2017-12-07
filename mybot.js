@@ -30,15 +30,13 @@ client.on('message', message => {
 		let cont = message.content.slice(prefix.length).split(" ");
 		let args = cont.slice(1);
 
+		util.userCheck(message.author.id);
 		//------------------------------------------------------------
 		var profile = json.readFileSync('../data/exp.json');
 
 		//profile[message.author.id].money += Math.floor(Math.random() * 3);
 		util.save(profile,"exp");
-		if(inventory[message.author.id] == undefined) {
-			inventory[message.author.id]={};
-			util.save(inventory,"inventory");
-		}
+		
 		if(message.content.startsWith(prefix)){
 			switch(cont[0].toLowerCase()){
 				case "buy":
