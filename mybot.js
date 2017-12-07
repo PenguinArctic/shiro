@@ -18,7 +18,7 @@ client.on('ready', () => {
 });
 
 client.on('debug',info=>{
-	if(!info.startsWith("[ws]")){
+	if(typeof info === 'string' && !info.startsWith("[ws]")){
 		util.log(client,info);
 	}
 })
