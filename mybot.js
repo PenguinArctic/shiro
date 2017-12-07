@@ -30,7 +30,7 @@ client.on('message', message => {
 		let cont = message.content.slice(prefix.length).split(" ");
 		let args = cont.slice(1);
 
-		util.userCheck(message.author.id);
+		util.userCheck(message.author.id,client);
 		//------------------------------------------------------------
 		var profile = json.readFileSync('../data/exp.json');
 
