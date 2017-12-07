@@ -3,7 +3,6 @@ const Discord = require('discord.js');
 const fs = require('fs'); 
 const moment = require('moment');
 var util = require("../akira/utilities.js")
-var config = require("./Storage/config.json");
 var json = require("jsonfile")
 
 let items = require('./Storage/items.json');
@@ -289,4 +288,4 @@ client.on('message', message => {
 
 
 
-client.login(config.token)
+client.login(require("../data/tokens.json").shiro)
