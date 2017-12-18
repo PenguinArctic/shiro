@@ -67,8 +67,19 @@ client.on('message', message => {
 
         switch(message.channel.name){
 			case "shiro": //ONLY WORKS IN THE SHOP
-				if (!client.commands.has(cont[0].toLowerCase())) return;				
-				client.commands.get(cont[0].toLowerCase()).execute(client, message, args);
+			var prefix = ">";
+				if(message.content.startsWith(prefix) || message.content.startsWith("<@!" + client.user.id + ">")){
+					var param = message.content.split(" ");
+				
+					if(message.content.startsWith(prefix)){
+						param[0] = param[0].split(prefix)[1];
+					}else{
+						param.splice(0,1);
+					}
+
+					if (!client.commands.has(param[0].toLowerCase())) return;				
+					client.commands.get(param[0].toLowerCase()).execute(client, message, args);
+				}
 				break;
 
 			case "shop":
