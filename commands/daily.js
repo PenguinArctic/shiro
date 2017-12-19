@@ -1,5 +1,5 @@
 var json = require("jsonfile")
-var profile = json.readFileSync('../../data/exp.json');
+var profile = json.readFileSync('../data/exp.json');
 const moment = require('moment');
 
 var util = require("../../akira/utilities.js")

@@ -1,5 +1,7 @@
+var json = require("jsonfile")
+var path = require("path")
 var util = require("../../akira/utilities.js")
-var profile = json.readFileSync('../../data/exp.json');
+var profile = json.readFileSync(path.resolve(__dirname + "/../../data/exp.json"));
 const modRole = '🍬 Admin';
 
 module.exports = {
