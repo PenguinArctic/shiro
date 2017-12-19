@@ -13,7 +13,7 @@ module.exports = {
             }
         }
 
-        if (message.member.roles.find("name", "Staff Team")) {   
+        if (message.member.roles.exists("name", "Staff Team")) {   
             embed.color= 16723473, 
             embed.footer= {
                 icon_url= "https://i.imgur.com/nIiVFxH.png",
@@ -21,7 +21,7 @@ module.exports = {
             }
         }
         //XXXXXXXX BALANCE FOR PATRONS------      
-        else if (message.member.roles.find("name", "✨ Patreons")) {    
+        else if (message.member.roles.exists("name", "✨ Patreons")) {    
                 embed.color= 16766720,               
                 embed.footer= {
                     icon_url: "https://i.imgur.com/e6GVMzo.png",
@@ -29,7 +29,7 @@ module.exports = {
                 }  
         }
         //XXXXXXXX BALANCE FOR VETERANS------         
-        else if (message.member.roles.find("name", "🍙 - Veterans")) {
+        else if (message.member.roles.exists("name", "🍙 - Veterans")) {
                 embed.color= 6384383,              
                 embed.footer= {
                     icon_url: "https://i.imgur.com/h0UM6Nj.png",
@@ -37,7 +37,7 @@ module.exports = {
                 } 
         }
         //XXXXXXXX BALANCE FOR MEMBERS------                   
-        else if (message.member.roles.find("name", "🍧 - Members")) { 
+        else if (message.member.roles.exists("name", "🍧 - Members")) { 
                 embed.color= 16723473,               
                 embed.footer= {
                     icon_url: "https://i.imgur.com/0df5BYX.png",
@@ -45,7 +45,7 @@ module.exports = {
                 }
         }    
         //XXXXXXXX BALANCE FOR CUSTOMERS------                       
-        else if (message.member.roles.find("name", "☕ - Customers")) {
+        else if (message.member.roles.exists("name", "☕ - Customers")) {
                 embed.color= 14246399,             
                 embed.footer= {
                 icon_url: "https://i.imgur.com/T6XEiI2.png",
