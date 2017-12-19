@@ -15,50 +15,6 @@ module.exports = {
             }
         }
 
-        //XXXXXXXX BALANCE FOR STAFF MEMBERS------             
-        if (message.member.roles.find("name", "Staff Team")) {                   
-            embed.color= 0,               
-            embed.footer= {
-            icon_url: "https://i.imgur.com/nIiVFxH.png",
-            text: "Fandom Bank (Staff Member 🔰)",
-            }                 
-        }
-        //XXXXXXXX BALANCE FOR PATRONS-----              
-        else if (message.member.roles.find("name", "✨ Patreons")) { 
-             
-            embed.color= 3446302,
-            embed.footer= {
-            icon_url: "https://i.imgur.com/Dmvr5Aa.png",
-            text: "Fandom Bank (Patron ✨)",
-            }
-        }
-        //XXXXXXXX BALANCE FOR VETERANS------                 
-        else if (message.member.roles.find("name", "🍙 - Veterans")) {
-                embed.color= 3446302,
-                embed.footer= {
-                icon_url: "https://i.imgur.com/Dmvr5Aa.png",
-                text: "Fandom Bank (Veteran 🍙)",
-                }
-            }
-        //XXXXXXXX BALANCE FOR MEMBERS------                  
-        else if (message.member.roles.find("name", "🍧 - Members")) {
-                embed.color= 3446302,
-                embed.footer= {
-                icon_url: "https://i.imgur.com/Dmvr5Aa.png",
-                text: "Fandom Bank (Member 🍧)",
-                }
-            }    
-        //XXXXXXXX BALANCE FOR STAFF CUSTOMERS-----                                  
-        else if (message.member.roles.find("name", "☕ - Customers")) {
-            embed.color= 3446302,
-            embed.footer= {
-        icon_url: "https://i.imgur.com/Dmvr5Aa.png",
-            text: "Fandom Bank (Customer ☕)",
-            }
-        }else {
-             message.channel.send(`**You are missing a role - please contact the staff**`)
-        };
-
         if(profile[message.author.id].lastDaily == "Not Collected" || moment.duration(moment().diff(moment(profile[message.author.id].lastDaily,"YYYY-MM-DD kk:mm"))).asHours() >= 24){
             profile[message.author.id].lastDaily = moment().format("YYYY-MM-DD kk:mm");
             profile[message.author.id].money += 500;
@@ -68,10 +24,58 @@ module.exports = {
                 name: "Daily collection",
                 value: `**You got $500! New Balance:** ${profile[message.author.id].money}`
             }]
+            
         }else{                                                                   
             embed.title= `**You already collected your daily reward! Collect your next reward** in ${24 - Math.floor(moment.duration(moment().diff(moment(profile[message.author.id].lastDaily,"YYYY-MM-DD kk:mm"))).asHours())} hours.`;                     
         }
-        
-        message.channel.send({embed:embed})
+
+        //XXXXXXXX BALANCE FOR STAFF MEMBERS------             
+        if (message.member.roles.find("name", "Staff Team")) {                   
+            embed.color= 0,               
+            embed.footer= {
+            icon_url: "https://i.imgur.com/nIiVFxH.png",
+            text: "Fandom Bank (Staff Member 🔰)",
+            }
+            return message.channel.send({embed:embed})                 
+        }
+        //XXXXXXXX BALANCE FOR PATRONS-----              
+        else if (message.member.roles.find("name", "✨ Patreons")) { 
+             
+            embed.color= 3446302,
+            embed.footer= {
+            icon_url: "https://i.imgur.com/Dmvr5Aa.png",
+            text: "Fandom Bank (Patron ✨)",
+            }
+            return message.channel.send({embed:embed})
+        }
+        //XXXXXXXX BALANCE FOR VETERANS------                 
+        else if (message.member.roles.find("name", "🍙 - Veterans")) {
+                embed.color= 3446302,
+                embed.footer= {
+                icon_url: "https://i.imgur.com/Dmvr5Aa.png",
+                text: "Fandom Bank (Veteran 🍙)",
+                }
+                return message.channel.send({embed:embed})
+            }
+        //XXXXXXXX BALANCE FOR MEMBERS------                  
+        else if (message.member.roles.find("name", "🍧 - Members")) {
+                embed.color= 3446302,
+                embed.footer= {
+                icon_url: "https://i.imgur.com/Dmvr5Aa.png",
+                text: "Fandom Bank (Member 🍧)",
+                }
+                return message.channel.send({embed:embed})
+        }    
+        //XXXXXXXX BALANCE FOR STAFF CUSTOMERS-----                                  
+        else if (message.member.roles.find("name", "☕ - Customers")) {
+            embed.color= 3446302,
+            embed.footer= {
+        icon_url: "https://i.imgur.com/Dmvr5Aa.png",
+            text: "Fandom Bank (Customer ☕)",
+            }
+            return message.channel.send({embed:embed})
+        }else {
+            return message.channel.send(`**You are missing a role - please contact the staff**`)
+        };
     }
 }
