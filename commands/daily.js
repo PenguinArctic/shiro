@@ -24,14 +24,14 @@ module.exports = {
                 name: "Daily collection",
                 value: `**You got $500! New Balance:** ${profile[message.author.id].money}`
             }]
-            
-        }else{                                                                   
+            embed.color= 3446302
+        }else{ 
+            embed.color= 0,                                                                  
             embed.title= `**You already collected your daily reward! Collect your next reward** in ${24 - Math.floor(moment.duration(moment().diff(moment(profile[message.author.id].lastDaily,"YYYY-MM-DD kk:mm"))).asHours())} hours.`;                     
         }
 
         //XXXXXXXX BALANCE FOR STAFF MEMBERS------             
-        if (message.member.roles.find("name", "Staff Team")) {                   
-            embed.color= 0,               
+        if (message.member.roles.find("name", "Staff Team")) {                          
             embed.footer= {
             icon_url: "https://i.imgur.com/nIiVFxH.png",
             text: "Fandom Bank (Staff Member 🔰)",
@@ -41,7 +41,7 @@ module.exports = {
         //XXXXXXXX BALANCE FOR PATRONS-----              
         else if (message.member.roles.find("name", "✨ Patreons")) { 
              
-            embed.color= 3446302,
+            
             embed.footer= {
             icon_url: "https://i.imgur.com/Dmvr5Aa.png",
             text: "Fandom Bank (Patron ✨)",
@@ -50,7 +50,7 @@ module.exports = {
         }
         //XXXXXXXX BALANCE FOR VETERANS------                 
         else if (message.member.roles.find("name", "🍙 - Veterans")) {
-                embed.color= 3446302,
+                
                 embed.footer= {
                 icon_url: "https://i.imgur.com/Dmvr5Aa.png",
                 text: "Fandom Bank (Veteran 🍙)",
@@ -59,7 +59,7 @@ module.exports = {
             }
         //XXXXXXXX BALANCE FOR MEMBERS------                  
         else if (message.member.roles.find("name", "🍧 - Members")) {
-                embed.color= 3446302,
+                
                 embed.footer= {
                 icon_url: "https://i.imgur.com/Dmvr5Aa.png",
                 text: "Fandom Bank (Member 🍧)",
@@ -68,7 +68,7 @@ module.exports = {
         }    
         //XXXXXXXX BALANCE FOR STAFF CUSTOMERS-----                                  
         else if (message.member.roles.find("name", "☕ - Customers")) {
-            embed.color= 3446302,
+            
             embed.footer= {
         icon_url: "https://i.imgur.com/Dmvr5Aa.png",
             text: "Fandom Bank (Customer ☕)",
