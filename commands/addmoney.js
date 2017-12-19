@@ -7,7 +7,7 @@ const modRole = '🍬 Admin';
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
-        if (!message.member.roles.find("name", modRole)) {
+        if (!message.member.roles.exists("name", modRole)) {
             message.channel.send({embed: {
                 color: 10181046,
                 author: {

@@ -66,7 +66,7 @@ client.on('message', message => {
 		util.save(profile,"exp");       
 
         switch(message.channel.name){
-			case "shiro": //ONLY WORKS IN THE SHOP
+			case "shop": //ONLY WORKS IN THE SHOP
 				if(message.content.startsWith(prefix) || message.content.startsWith("<@!" + client.user.id + ">")){
 					var param = message.content.split(" ");
 				
@@ -81,7 +81,7 @@ client.on('message', message => {
 				}
 				break;
 
-			case "shop":
+			case "shiro":
 				util.talk(client,message);  //BMO CAN TALK O.O
 				break;
 		}
