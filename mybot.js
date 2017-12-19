@@ -67,7 +67,6 @@ client.on('message', message => {
 
         switch(message.channel.name){
 			case "shiro": //ONLY WORKS IN THE SHOP
-			var prefix = ">";
 				if(message.content.startsWith(prefix) || message.content.startsWith("<@!" + client.user.id + ">")){
 					var param = message.content.split(" ");
 				

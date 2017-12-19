@@ -1,13 +1,14 @@
 const Discord = require('discord.js');
-
+var path = require("path")
 var util = require("../../akira/utilities.js")
-let items = require('./Storage/items.json');
-
-var inventory = json.readFileSync('../../data/inventory.json');
-const fs = require('fs'); 
+let items = require('../Storage/items.json');
 var json = require("jsonfile")
 
-var profile = json.readFileSync('../../data/exp.json');
+var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
+const fs = require('fs'); 
+
+
+var profile = json.readFileSync('../data/exp.json');
 
 module.exports = {
     desc:"This is a description",

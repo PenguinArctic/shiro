@@ -1,5 +1,5 @@
 var json = require("jsonfile")
-var profile = json.readFileSync('../../data/exp.json');
+var profile = json.readFileSync('../data/exp.json');
 
 module.exports = {
     desc:"This is a description",
@@ -13,40 +13,65 @@ module.exports = {
             }
         }
 
+<<<<<<< HEAD
         if (message.member.roles.exists("name", "Staff Team")) {   
             embed.color= 16723473, 
+=======
+        if (message.member.roles.find("name", "Staff Team")) {   
+            embed.color= 16723473;
+>>>>>>> 168b3ce28ac4218716c9a7c59f5e17b4c0da2d40
             embed.footer= {
-                icon_url= "https://i.imgur.com/nIiVFxH.png",
-                text= "Fandom Bank (Staff Member 🔰)",
+                icon_url: "https://i.imgur.com/nIiVFxH.png",
+                text: "Fandom Bank (Staff Member 🔰)",
             }
         }
         //XXXXXXXX BALANCE FOR PATRONS------      
+<<<<<<< HEAD
         else if (message.member.roles.exists("name", "✨ Patreons")) {    
                 embed.color= 16766720,               
+=======
+        else if (message.member.roles.find("name", "✨ Patreons")) {    
+                embed.color= 16766720;               
+>>>>>>> 168b3ce28ac4218716c9a7c59f5e17b4c0da2d40
                 embed.footer= {
                     icon_url: "https://i.imgur.com/e6GVMzo.png",
                     text: "Fandom Bank (Patron ✨)",
                 }  
         }
         //XXXXXXXX BALANCE FOR VETERANS------         
+<<<<<<< HEAD
         else if (message.member.roles.exists("name", "🍙 - Veterans")) {
                 embed.color= 6384383,              
+=======
+        else if (message.member.roles.find("name", "🍙 - Veterans")) {
+                embed.color= 6384383;              
+>>>>>>> 168b3ce28ac4218716c9a7c59f5e17b4c0da2d40
                 embed.footer= {
                     icon_url: "https://i.imgur.com/h0UM6Nj.png",
                     text: "Fandom Bank (Veteran 🍙)",
                 } 
         }
         //XXXXXXXX BALANCE FOR MEMBERS------                   
+<<<<<<< HEAD
         else if (message.member.roles.exists("name", "🍧 - Members")) { 
                 embed.color= 16723473,               
+=======
+        else if (message.member.roles.find("name", "🍧 - Members")) { 
+                embed.color= 16723473;               
+>>>>>>> 168b3ce28ac4218716c9a7c59f5e17b4c0da2d40
                 embed.footer= {
                     icon_url: "https://i.imgur.com/0df5BYX.png",
                     text: "Fandom Bank (Member 🍧)",
                 }
         }    
         //XXXXXXXX BALANCE FOR CUSTOMERS------                       
+<<<<<<< HEAD
         else if (message.member.roles.exists("name", "☕ - Customers")) {
                 embed.color= 14246399,             
+=======
+        else if (message.member.roles.find("name", "☕ - Customers")) {
+                embed.color= 14246399;             
+>>>>>>> 168b3ce28ac4218716c9a7c59f5e17b4c0da2d40
                 embed.footer= {
                 icon_url: "https://i.imgur.com/T6XEiI2.png",
                 text: "Fandom Bank (Customer ☕)",
