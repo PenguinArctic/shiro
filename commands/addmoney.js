@@ -54,15 +54,7 @@ module.exports = {
             return;
         }
 
-        let defineduser = '';
-        if (!param[1]) {
-            defineduser = message.author.id;
-        } else {
-            let firstMentioned = message.mentions.users.first();
-            defineduser = firstMentioned.id;
-        }
-
-        profile[defineduser].money += parseInt(param[0])
+        profile[message.author.id].money += parseInt(param[0])
         util.save(profile,"exp");
         message.channel.send(`**User defined had ${param[0]} added/subtraction from their account.**`)
     }
