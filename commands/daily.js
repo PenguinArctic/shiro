@@ -22,12 +22,12 @@ module.exports = {
             
             embed.fields= [{
                 name: "Daily collection",
-                value: `**You got $500! New Balance:** ${profile[message.author.id].money}`
+                value: `**You got 💴 500! New Balance:** ${profile[message.author.id].money}`
             }]
             embed.color= 3446302
-            icon_url: "https://i.imgur.com/OWk7t7b.png"
+            embed.footer.icon_url= "https://i.imgur.com/OWk7t7b.png"
         }else{ 
-            icon_url: "https://i.imgur.com/6zXSNu5.png"
+            embed.footer.icon_url= "https://i.imgur.com/6zXSNu5.png"
             embed.color= 0                                                              
             embed.title= `**You already collected your daily reward! Collect your next reward** in ${24 - Math.floor(moment.duration(moment().diff(moment(profile[message.author.id].lastDaily,"YYYY-MM-DD kk:mm"))).asHours())} hours.`;                     
         }
