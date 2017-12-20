@@ -40,8 +40,6 @@ module.exports = {
         }
         //XXXXXXXX BALANCE FOR PATRONS-----              
         else if (message.member.roles.find("name", "✨ Patreons")) { 
-             
-            
             embed.footer= {
             icon_url: "https://i.imgur.com/Dmvr5Aa.png",
             text: "Fandom Bank (Patron ✨)",

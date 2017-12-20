@@ -7,13 +7,12 @@ var json = require("jsonfile")
 var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
 const fs = require('fs'); 
 
-
 var profile = json.readFileSync('../data/exp.json');
 
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
-        message.delete([1])
+        message.delete();
         let categories = [];
         if (!param.join(" ")) {
             for (var i in items) {
@@ -35,7 +34,7 @@ module.exports = {
                 }
                 embed.addField(categories[i], tempDesc);
             }
-            return ;
+            return message.author.send(embed);
         }
 
         let itemName = '';
@@ -93,7 +92,7 @@ module.exports = {
 
                         case "Background":
                             message.author.send("Write the code of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
-                                const collector = message.channel.createMessageCollector(
+                                const collector = proposal.channel.createMessageCollector(
                                     m => m.author.id == message.author.id,
                                     { max: 1 }
                                 );
@@ -104,7 +103,6 @@ module.exports = {
                                     if(fs.existsSync(`../../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
                                         if(inventory[m.author.id][`bg${number}`]){
                                             message.author.send("You already have this background. Set it using >background <code>")
-                                        // Somewhere here is another error with missing role or sum
                                         }else{
                                             profile[m.author.id].money += -itemPrice;
                                             inventory[m.author.id][`bg${number}`] = true;
