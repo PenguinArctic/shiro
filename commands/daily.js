@@ -12,6 +12,9 @@ module.exports = {
             author: {
                 name: message.author.displayName,
                 icon_url: message.author.displayAvatarURL(),               
+            },
+            footer:{
+
             }
         }
 
