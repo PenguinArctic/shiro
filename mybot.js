@@ -25,14 +25,18 @@ var json = require("jsonfile")
 //load the commands
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands');
+const commonCommands = fs.readdirSync('../akira/commonCommands');
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
+    client.commands.set(file.split(".js")[0], command);
+}
+for (const file of commonCommands) {
+    const command = require(`../akira/commonCommands/${file}`);
     client.commands.set(file.split(".js")[0], command);
 }
 
 // Local data
 var util = require("../akira/utilities.js")
-
 
 // On startup
 client.on('ready', () => {
