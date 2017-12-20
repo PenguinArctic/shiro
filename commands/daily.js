@@ -37,38 +37,27 @@ module.exports = {
 
         //XXXXXXXX BALANCE FOR STAFF MEMBERS------             
         if (message.member.roles.find("name", "Staff Team")) {                          
-            embed.footer= {
-            text: "Fandom Bank (Staff Member 🔰)",
-            }
+            embed.footer.text = "Fandom Bank (Staff Member 🔰)"
             return message.channel.send({embed:embed})                 
         }
         //XXXXXXXX BALANCE FOR PATRONS-----              
         else if (message.member.roles.find("name", "✨ Patreons")) { 
-            embed.footer= {
-            text: "Fandom Bank (Patron ✨)",
-            }
+            embed.footer.text = "Fandom Bank (Patron ✨)"
             return message.channel.send({embed:embed})
         }
         //XXXXXXXX BALANCE FOR VETERANS------                 
         else if (message.member.roles.find("name", "🍙 - Veterans")) {                
-                embed.footer= {
-                text: "Fandom Bank (Veteran 🍙)",
-                }
+            embed.footer.text = "Fandom Bank (Veteran 🍙)"
                 return message.channel.send({embed:embed})
             }
         //XXXXXXXX BALANCE FOR MEMBERS------                  
         else if (message.member.roles.find("name", "🍧 - Members")) {               
-                embed.footer= {
-                text: "Fandom Bank (Member 🍧)",
-                }
+            embed.footer.text = "Fandom Bank (Member 🍧)"
                 return message.channel.send({embed:embed})
         }    
         //XXXXXXXX BALANCE FOR STAFF CUSTOMERS-----                                  
         else if (message.member.roles.find("name", "☕ - Customers")) {
-            
-            embed.footer= {
-            text: "Fandom Bank (Customer ☕)",
-            }
+            embed.footer.text = "Fandom Bank (Customer ☕)"
             return message.channel.send({embed:embed})
         }else {
             return message.channel.send(`**You are missing a role - please contact the staff**`)
