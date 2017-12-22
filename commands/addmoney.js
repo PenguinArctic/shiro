@@ -1,12 +1,12 @@
 var json = require("jsonfile")
 var path = require("path")
 var util = require("../../akira/utilities.js")
-var profile = json.readFileSync(path.resolve(__dirname + "/../../data/exp.json"));
 const modRole = '🍬 Admin';
 
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
+        var profile = json.readFileSync('../data/exp.json');
         if (!message.member.roles.exists("name", modRole)) {
             message.channel.send({embed: {
                 color: 10181046,

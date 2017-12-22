@@ -1,5 +1,4 @@
 var json = require("jsonfile")
-var profile = json.readFileSync('../data/exp.json');
 const moment = require('moment');
 
 var util = require("../../akira/utilities.js")
@@ -7,6 +6,7 @@ var util = require("../../akira/utilities.js")
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
+        var profile = json.readFileSync('../data/exp.json');
         var embed = {
             timestamp: message.createdTimestamp, 
             author: {

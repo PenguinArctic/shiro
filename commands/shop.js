@@ -3,16 +3,16 @@ var path = require("path")
 var util = require("../../akira/utilities.js")
 let items = require('../Storage/items.json');
 var json = require("jsonfile")
-
-var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
 const fs = require('fs'); 
-
-var profile = json.readFileSync('../data/exp.json');
 
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
         message.delete();
+
+        var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
+        var profile = json.readFileSync('../data/exp.json');
+
         let categories = [];
         if (!param.join(" ")) {
             for (var i in items) {

@@ -1,9 +1,10 @@
 var json = require("jsonfile")
-var profile = json.readFileSync('../data/exp.json');
+
 
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
+        var profile = json.readFileSync('../data/exp.json');
         var embed = {
             title: `**Account Balance:** ${profile[message.author.id].money} 💴`,
             timestamp: message.createdTimestamp, 
