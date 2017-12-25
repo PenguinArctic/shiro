@@ -88,6 +88,9 @@ client.on('message', message => {
 			case "shiro":
 				util.talk(client,message);  //BMO CAN TALK O.O
 				break;
+            case "shop":
+                message.delete():
+                break;
 		}
 	}catch(e){
 		util.log(client,`${e}\nSource: ${__filename.split("/root/bots/")[1]}`);
