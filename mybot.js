@@ -89,7 +89,7 @@ client.on('message', message => {
 				util.talk(client,message);  //BMO CAN TALK O.O
 				break;
             case "shop":
-                message.delete():
+                message.delete();
                 break;
 		}
 	}catch(e){
