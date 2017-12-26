@@ -79,8 +79,9 @@ client.on('message', message => {
 			}
 
 			if(util.permCheck(message,param[0].toLowerCase())){
-				if (!client.commands.has(param[0].toLowerCase())) return;				
-				client.commands.get(param[0].toLowerCase()).execute(client, message, args);
+				if (client.commands.has(param[0].toLowerCase())){				
+					client.commands.get(param[0].toLowerCase()).execute(client, message, args)
+				}
 			}
 		}
 
