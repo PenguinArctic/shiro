@@ -74,20 +74,28 @@ module.exports = {
             }
             switch(itemType){
                 case "Packs":
-                    profile[message.author.id].money += -itemPrice;
-                    message.member.addRole(message.guild.roles.find("name", item.role));
-                    message.author.send('**You bought ' + itemName + '!**');
-                    message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
+                    if(!message.member.roles.exists("name",item.role)){
+                        profile[message.author.id].money += -itemPrice;
+                        message.member.addRole(message.guild.roles.find("name", item.role));
+                        message.author.send('**You bought ' + itemName + '!**');
+                        message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
+                    }else{
+                        message.author.send('**You already have ' + itemName + '!**')
+                    }
                     break;
 
                 case "Utilities":
                     switch(itemName){
                         case "Nickname Change":
-                            profile[message.author.id].money += -itemPrice;
-                            message.member.addRole(message.guild.roles.find("name", item.role),"Purchase from the shop");
-                            message.author.send('**You bought ' + itemName + '!**');
-                            message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
-                            util.save(profile,"exp");
+                            if(!message.member.roles.exists("name",item.role)){
+                                profile[message.author.id].money += -itemPrice;
+                                message.member.addRole(message.guild.roles.find("name", item.role),"Purchase from the shop");
+                                message.author.send('**You bought ' + itemName + '!**');
+                                message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
+                                util.save(profile,"exp");
+                            }else{
+                                message.author.send('**You already have a ' + itemName + ' active!**')
+                            }
                             break;
 
                         case "Background":
@@ -100,7 +108,8 @@ module.exports = {
                                     var unavailable = json.readFileSync('../../data/unavailable.json');
                                     var number = m.content.split(" ")[0].toUpperCase();
 
-                                    if(fs.existsSync(`../../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
+                                    if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
+                                        
                                         if(inventory[m.author.id][`bg${number}`]){
                                             message.author.send("You already have this background. Set it using >background <code>")
                                         }else{
