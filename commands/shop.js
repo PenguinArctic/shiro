@@ -8,8 +8,6 @@ const fs = require('fs');
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
-        message.delete();
-
         var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
         var profile = json.readFileSync('../data/exp.json');
 
@@ -111,16 +109,16 @@ module.exports = {
                                     if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
                                         
                                         if(inventory[m.author.id][`bg${number}`]){
-                                            message.author.send("You already have this background. Set it using >background <code>")
+                                            m.author.send("You already have this background. Set it using >background <code>")
                                         }else{
                                             profile[m.author.id].money += -itemPrice;
                                             inventory[m.author.id][`bg${number}`] = true;
-                                            message.author.send("Thanks for buying this background ^.^. Set it using >background <code>");
+                                            m.author.send("Thanks for buying this background ^.^. Set it using >background <code>");
                                             util.save(inventory,"inventory");
                                             util.save(profile,"exp");
                                         }
                                     }else{
-                                        message.author.send(`The background code ${number} doesnt exist or is no longer available for purchase. Check https://www.fandomcircle.com/shop-1#PROFILES for more info`)
+                                        m.author.send(`The background code ${number} doesnt exist or is no longer available for purchase. Check https://www.fandomcircle.com/shop-1#PROFILES for more info`)
                                     }
                                 })
                             })
