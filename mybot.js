@@ -34,7 +34,7 @@ for (const file of commandFiles) {
 	}
 }
 for (const file of commonCommands) {
-    const command = require(`./commonCommands/${file}`);
+    const command = require(`../akira/commonCommands/${file}`);
 	client.commands.set(file.split(".js")[0], command);
 	if(command.alias){
 		command.alias.forEach(alias => client.commands.set(alias, command))
