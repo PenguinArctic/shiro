@@ -28,11 +28,17 @@ const commandFiles = fs.readdirSync('./commands');
 const commonCommands = fs.readdirSync('../akira/commonCommands');
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
-    client.commands.set(file.split(".js")[0], command);
+	client.commands.set(file.split(".js")[0], command);
+	if(command.alias){
+		command.alias.forEach(alias => client.commands.set(alias, command))
+	}
 }
 for (const file of commonCommands) {
-    const command = require(`../akira/commonCommands/${file}`);
-    client.commands.set(file.split(".js")[0], command);
+    const command = require(`./commonCommands/${file}`);
+	client.commands.set(file.split(".js")[0], command);
+	if(command.alias){
+		command.alias.forEach(alias => client.commands.set(alias, command))
+	}
 }
 
 // Local data
