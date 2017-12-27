@@ -2,6 +2,7 @@ var json = require("jsonfile")
 
 
 module.exports = {
+    alias:["money"],
     desc:"This is a description",
     execute(client, message, param){
         var profile = json.readFileSync('../data/exp.json');

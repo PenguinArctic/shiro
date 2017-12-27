@@ -7,6 +7,7 @@ const fs = require('fs');
 
 module.exports = {
     desc:"This is a description",
+    alias:["buy"],
     execute(client, message, param){
         var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
         var profile = json.readFileSync('../data/exp.json');
