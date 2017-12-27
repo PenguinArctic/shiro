@@ -108,11 +108,11 @@ module.exports = {
 
                                     if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
                                         
-                                        if(inventory[m.author.id][`bg${number}`]){
+                                        if(inventory[m.author.id].bgs.includes(number)){
                                             m.author.send("You already have this background. Set it using >background <code>")
                                         }else{
                                             profile[m.author.id].money += -itemPrice;
-                                            inventory[m.author.id][`bg${number}`] = true;
+                                            inventory[m.author.id].bgs.push(number);
                                             m.author.send("Thanks for buying this background ^.^. Set it using >background <code>");
                                             util.save(inventory,"inventory");
                                             util.save(profile,"exp");
