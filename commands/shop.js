@@ -99,12 +99,11 @@ module.exports = {
 
                         case "Background":
                             message.author.send("Write the code of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
-                                const collector = proposal.channel.createMessageCollector(
-                                    m => m.author.id == message.author.id,
-                                    { max: 1 }
-                                );
-                                collector.on('collect', m => {
-                                    var unavailable = json.readFileSync('../../data/unavailable.json').bgs;
+                                var filter = m => m.author.id == message.author.id;
+                                proposal.channel.awaitMessages(filter, { max: 1 })
+                                .then(collected => {
+                                    var m = collected.first();
+                                    var unavailable = json.readFileSync('../data/unavailable.json').bgs;
                                     var number = m.content.split(" ")[0].toUpperCase();
 
                                     if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable.includes(number)){
@@ -125,23 +124,21 @@ module.exports = {
                             })
                             break;
 
-                        case "Badge":
-                            message.author.send("Write the code of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
-                                const collector = proposal.channel.createMessageCollector(
-                                    m => m.author.id == message.author.id,
-                                    { max: 1 }
-                                );
-                                collector.on('collect', m => {
-                                    var unavailable = json.readFileSync('../../data/unavailable.json').badges;
+                        case "Badges":
+                            message.author.send("Write the code of the desired badge (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
+                                var filter = m => m.author.id == message.author.id;
+                                proposal.channel.awaitMessages(filter, { max: 1 })
+                                .then(collected => {
+                                    var m = collected.first();
+                                    var unavailable = json.readFileSync('../data/unavailable.json').badges;
                                     var number = m.content.split(" ")[0].toUpperCase();
-                                    console.log(number)
 
                                     if(fs.existsSync(`../akira/images/badges/${number}.png`) && !unavailable.includes(number)){                              
-                                        if(inventory[m.author.id].badges.includes(number)){
+                                        if(inventory[m.author.id].badges[number]){
                                             m.author.send("You already have this badge. Set it using >equip <position> <badge>")
                                         }else{
                                             profile[m.author.id].money += -itemPrice;
-                                            inventory[m.author.id].badges[number] = false;
+                                            inventory[m.author.id].badges[number] = "not equiped";
                                             m.author.send("Thanks for buying this badge ^.^. Set it using >equip <position> <badge>");
                                             util.save(inventory,"inventory");
                                             util.save(profile,"exp");
