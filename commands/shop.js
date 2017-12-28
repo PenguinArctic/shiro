@@ -104,10 +104,10 @@ module.exports = {
                                     { max: 1 }
                                 );
                                 collector.on('collect', m => {
-                                    var unavailable = json.readFileSync('../../data/unavailable.json');
+                                    var unavailable = json.readFileSync('../../data/unavailable.json').bgs;
                                     var number = m.content.split(" ")[0].toUpperCase();
 
-                                    if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable[number]){
+                                    if(fs.existsSync(`../akira/images/backgrounds/${number}.png`) && !unavailable.includes(number)){
                                         
                                         if(inventory[m.author.id].bgs.includes(number)){
                                             m.author.send("You already have this background. Set it using >background <code>")
@@ -120,6 +120,34 @@ module.exports = {
                                         }
                                     }else{
                                         m.author.send(`The background code ${number} doesnt exist or is no longer available for purchase. Check https://www.fandomcircle.com/shop-1#PROFILES for more info`)
+                                    }
+                                })
+                            })
+                            break;
+
+                        case "Badge":
+                            message.author.send("Write the code of the desired background (You can see them here https://www.fandomcircle.com/shop-1#PROFILES)").then(proposal => {
+                                const collector = proposal.channel.createMessageCollector(
+                                    m => m.author.id == message.author.id,
+                                    { max: 1 }
+                                );
+                                collector.on('collect', m => {
+                                    var unavailable = json.readFileSync('../../data/unavailable.json').badges;
+                                    var number = m.content.split(" ")[0].toUpperCase();
+                                    console.log(number)
+
+                                    if(fs.existsSync(`../akira/images/badges/${number}.png`) && !unavailable.includes(number)){                              
+                                        if(inventory[m.author.id].badges.includes(number)){
+                                            m.author.send("You already have this badge. Set it using >equip <position> <badge>")
+                                        }else{
+                                            profile[m.author.id].money += -itemPrice;
+                                            inventory[m.author.id].badges[number] = false;
+                                            m.author.send("Thanks for buying this badge ^.^. Set it using >equip <position> <badge>");
+                                            util.save(inventory,"inventory");
+                                            util.save(profile,"exp");
+                                        }
+                                    }else{
+                                        m.author.send(`The badge ${number} doesnt exist or is no longer available for purchase. Check https://www.fandomcircle.com/shop-1#PROFILES for more info`)
                                     }
                                 })
                             })
