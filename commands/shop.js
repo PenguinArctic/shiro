@@ -131,14 +131,14 @@ module.exports = {
                                 .then(collected => {
                                     var m = collected.first();
                                     var unavailable = json.readFileSync('../data/unavailable.json').badges;
-                                    var number = m.content.split(" ")[0].toUpperCase();
+                                    var number = m.content.toUpperCase();
 
                                     if(fs.existsSync(`../akira/images/badges/${number}.png`) && !unavailable.includes(number)){                              
-                                        if(inventory[m.author.id].badges[number]){
+                                        if(inventory[m.author.id].badges.includes(number)){
                                             m.author.send("You already have this badge. Set it using >equip <position> <badge>")
                                         }else{
                                             profile[m.author.id].money += -itemPrice;
-                                            inventory[m.author.id].badges[number] = "not equiped";
+                                            inventory[m.author.id].badges.push(number);
                                             m.author.send("Thanks for buying this badge ^.^. Set it using >equip <position> <badge>");
                                             util.save(inventory,"inventory");
                                             util.save(profile,"exp");
