@@ -53,8 +53,10 @@ module.exports = {
             }});
             return;
         }
-
-        profile[message.author.id].money += parseInt(param[0])
+        var id = message.author.id;
+        if(message.mentions.users.size > 0) id = message.mentions.users.first().id;
+        
+        profile[id].money += parseInt(param[0])
         util.save(profile,"exp");
         message.channel.send(`**User defined had ${param[0]} added/subtraction from their account.**`)
     }
