@@ -6,6 +6,7 @@ const modRole = '🍬 Admin';
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
+try{
         var profile = json.readFileSync('../data/exp.json');
         if (!message.member.roles.exists("name", modRole)) {
             message.channel.send({embed: {
@@ -60,4 +61,9 @@ module.exports = {
         util.save(profile,"exp");
         message.channel.send(`**User defined had ${param[0]} added/subtraction from their account.**`)
     }
+catch(e){
+util.log(client,`${e}
+Source: ${__filename.split('/root/bots/')[1]}`)
+}
+}
 }

@@ -5,6 +5,7 @@ module.exports = {
     alias:["money"],
     desc:"This is a description",
     execute(client, message, param){
+try{
         var profile = json.readFileSync('../data/exp.json');
         var embed = {
             title: `**Account Balance:** ${profile[message.author.id].money} 💴`,
@@ -60,4 +61,9 @@ module.exports = {
         
         message.channel.send({embed:embed});
     }
+catch(e){
+util.log(client,`${e}
+Source: ${__filename.split('/root/bots/')[1]}`)
+}
+}
 }
