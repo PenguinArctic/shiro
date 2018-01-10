@@ -3,7 +3,7 @@ var path = require("path")
 var util = require("../../akira/utilities.js")
 let items = require('../Storage/items.json');
 var json = require("jsonfile")
-const fs = require('fs'); s
+const fs = require('fs'); 
 
 module.exports = {
     desc:"This is a description",
