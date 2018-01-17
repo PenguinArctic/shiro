@@ -11,6 +11,8 @@ module.exports = {
     alias:["buy"],
     execute(client, message, param){
         try{
+            util.userCheck(message.author.id,client);
+
             var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
             var profile = json.readFileSync('../data/exp.json');
 
