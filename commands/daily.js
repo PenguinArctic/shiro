@@ -21,12 +21,12 @@ try{
 
         if(profile[message.author.id].lastDaily == "Not Collected" || moment.duration(moment().diff(moment(profile[message.author.id].lastDaily,"YYYY-MM-DD kk:mm"))).asHours() >= 24){
             profile[message.author.id].lastDaily = moment().format("YYYY-MM-DD kk:mm");
-            profile[message.author.id].money += 500;
+            profile[message.author.id].money += 2000;
             util.save(profile,"exp"); 
             
             embed.fields= [{
                 name: "Daily collection",
-                value: `**You got 💴 500! New Balance:** ${profile[message.author.id].money}`
+                value: `**You got 💴 2000! New Balance:** ${profile[message.author.id].money}`
             }]
             embed.color= 3446302
             embed.footer.icon_url= "https://i.imgur.com/OWk7t7b.png"
