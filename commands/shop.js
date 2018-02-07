@@ -83,7 +83,7 @@ module.exports = {
                             profile[message.author.id].money += -itemPrice;
                             message.member.addRole(message.guild.roles.find("name", item.role));
                             message.author.send('**You bought ' + itemName + '!**');
-                            message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
+                            //message.guild.channels.find("name",item.channel).send(`<@${message.author.id}>`).then(m=>m.delete({"reason":"New channel ping"}))
                         }else{
                             message.author.send('**You already have ' + itemName + '!**')
                         }
