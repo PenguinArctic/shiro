@@ -10,7 +10,6 @@ module.exports = {
     desc:"This is a description",
     alias:["buy"],
     execute(client, message, param){
-        try{
             util.userCheck(message.author.id,client);
 
             var inventory = json.readFileSync(path.resolve(__dirname + "../../../data/inventory.json"));
@@ -181,8 +180,5 @@ module.exports = {
                         break;
                 }
             }       
-        }catch(e){
-            util.log(client,`${e}\nSource: ${__filename.split('/root/bots/')[1]}`)
-        }
     }
 }
