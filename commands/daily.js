@@ -6,7 +6,6 @@ var util = require("../../akira/utilities.js")
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
-try{
         var profile = json.readFileSync('../data/exp.json');
         var embed = {
             timestamp: message.createdTimestamp, 
@@ -63,10 +62,5 @@ try{
         }else {
             return message.channel.send(`**You are missing a role - please contact the staff**`)
         };
-    }
-catch(e){
-util.log(client,`${e}
-Source: ${__filename.split('/root/bots/')[1]}`)
-}
 }
 }
