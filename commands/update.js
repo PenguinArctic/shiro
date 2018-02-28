@@ -5,7 +5,6 @@ var util = require('../../akira/utilities.js');
 module.exports = {
     desc:"This is a description",
     execute(client, message, param){
-try{
         message.delete();
 
         message.channel.send("Downloading changes.....").then(m=>{
@@ -22,10 +21,5 @@ try{
                 }
             })
         })      
-    }
-catch(e){
-util.log(client,`${e}
-Source: ${__filename.split('/root/bots/')[1]}`)
-}
 }
 }
